@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app-7-configmap
+  name: app-configmap
 data:
-  APP_NAME: "app-7"
+  APP_NAME: "base-app"
   ENVIRONMENT: "dev"
   LOG_LEVEL: "info"
   TZ: "America/Santiago"

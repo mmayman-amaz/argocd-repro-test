@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-3-configmap
-data:
-  APP_NAME: "app-3"
-  ENVIRONMENT: "dev"
-  LOG_LEVEL: "info"
-  TZ: "America/Santiago"
