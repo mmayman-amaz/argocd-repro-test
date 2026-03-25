@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-job-5
+  labels:
+    app.kubernetes.io/instance: app-5
+    tags.datadoghq.com/service: cron-job-5
+spec:
+  schedule: "0 5 * * *"
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 100
+      backoffLimit: 3
+      ttlSecondsAfterFinished: 100
+      template:
+        metadata:
+          labels:
+            app: cron-job-5
+        spec:
+          restartPolicy: Never
+          serviceAccountName: sa-app-5
+          containers:
+          - name: cron-job-5
+            image: busybox:latest
+            command: ["sh", "-c", "echo Running job 5 && sleep 10"]
+            envFrom:
+            - configMapRef:
+                name: app-5-configmap
+            - secretRef:
+                name: app-5-secret
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                cpu: 500m
+                memory: 500Mi
