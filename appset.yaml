@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: cronjob-appset
-  namespace: argocd-custom
+  namespace: argocd
 spec:
   generators:
   - list:
