@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: single-appset
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - name: app-3
+        namespace: ns-app-3
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      destination:
+        server: arn:aws:eks:us-west-2:165919938845:cluster/interesting-electro-ant-vessel-exercise
+        namespace: '{{namespace}}'
+      source:
+        repoURL: https://github.com/mmayman-amaz/argocd-repro-test.git
+        targetRevision: HEAD
+        path: apps/{{name}}/overlays/development
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

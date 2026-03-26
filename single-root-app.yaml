@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: single-root-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mmayman-amaz/argocd-repro-test.git
+    targetRevision: HEAD
+    path: .
+    directory:
+      include: 'single-appset.yaml'
+  destination:
+    server: arn:aws:eks:us-west-2:165919938845:cluster/interesting-electro-ant-vessel-exercise
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
