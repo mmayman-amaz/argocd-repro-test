@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root-app
-  namespace: argocd-custom
+  namespace: argocd
 spec:
   project: default
   source:
@@ -13,7 +13,7 @@ spec:
       include: 'appset.yaml'
   destination:
     server: arn:aws:eks:us-west-2:165919938845:cluster/interesting-electro-ant-vessel-exercise
-    namespace: argocd-custom
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
