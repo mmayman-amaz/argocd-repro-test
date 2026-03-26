@@ -12,7 +12,7 @@ spec:
     directory:
       include: 'appset.yaml'
   destination:
-    server: arn:aws:eks:us-west-2:165919938845:cluster/interesting-electro-ant-vessel-exercise
+    server: https://3715F7A0C3FA74C4A14DDE5FDA73D184.gr7.us-west-2.eks.amazonaws.com
     namespace: argocd
   syncPolicy:
     automated:
